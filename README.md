@@ -1,15 +1,30 @@
-> Identifique o produto que será construído. Para isso, nomeie-o da seguinte forma: imagine o produto em uma caixa, qual nome estaria 
-> escrito nela?
-# ToDoZ
+# Ampare
+
+### 🎓 Curso Sistemas para a Internet - PUC-MG
+
+### Eixo 4 - Projeto: Desenvolvimento de Aplicações Distribuídas - Turma 01 - 2024/1
 
 # Visão do Produto
-> Ter uma visão clara do produto é essencial para entender como as primeiras peças do quebra-cabeça do seu negócio se encaixarão. Essa
-> visão deve capturar a essência do valor que seu negócio oferece e transmitir uma mensagem clara e cativante para seus clientes. 
-> Utilize o seguinte modelo para criar a visão do seu produto:
 
-> Para [o nome do cliente final], cujo [o problema que precisa ser resolvido]. O [o nome do produto] é [a categoria do produto] que [o benefício-chave, razão para adquiri-lo]. Diferentemente de [alternativa da concorrência], o nosso produto [a diferença-chave].
+Para voluntários, que desejam encontrar, de maneira prática, projetos de ajuda humanitária urgentes na região, e ONGs, que desejam encontrar, de maneira prática e urgente, voluntários na região. O Projeto Ampare é uma aplicação web elaborada em ambiente acadêmico que objetiva a criação de uma plataforma de ajuda humanitária com o intuito de conectar voluntários e ONGs que necessitem de auxílio em atividades, causas e ações sociais urgentes. A plataforma fornecerá o acesso intuitivo dos voluntários à causas que necessitem de ajuda urgente, compartilhando informações e conectando-os diretamente às ONGs. Diferentemente de outras aplicações do mesmo segmento, nosso projeto busca apresentar uma conexão mais prática e rápida entre os voluntários e ONGs, pois tem como foco principal causas urgentes e de devida importância.
 
-Para freelancers que trabalham em diversos projetos, cujo desafio é gerenciar tarefas, priorizar atividades, manter o foco e medir o custo de cada projeto com precisão. O ToDoZ é um software de gerenciamento de tarefas e tempo baseado na técnica de pomodoro e método de Eisenhower, que melhora a concentração, aumenta a produtividade e permite um melhor planejamento financeiro. Diferentemente de outras opções no mercado, nosso produto oferece uma solução completa e eficiente para o dia a dia do freelancer.
+## 🧠 Integrantes
+<ul>
+<li>Angélica Almeida - [@angelicasa](https://github.com/angelicasa)
+<li>Matheus Soares de Sales - [@matheus-9](https://github.com/matheus-9)
+<li>Maria Michele de Freitas - [@mmichelefreitas](https://github.com/mmichelefreitas)
+<li>Nicolas F. Petrachin Wulk - [@nickwulk](https://github.com/nickwulk)
+<li>Raquel Bomjardim Ferreira - [@bomjardimraquel](https://github.com/bomjardimraquel)
+<ul>
+
+## ✏️ Orientador
+
+Prof. Luiz Alberto Ferreira Gomes
+
+
+## 📝 Instruções de utilização
+
+Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
 
 
 ## Etapa 1: Requisitos do produto
