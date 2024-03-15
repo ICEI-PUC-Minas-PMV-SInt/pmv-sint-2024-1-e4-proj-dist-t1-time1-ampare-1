@@ -19,3 +19,5 @@ Diante deste cenário, torna-se fundamental o desenvolvimento de uma aplicação
 ### Problema
 
 Conforme destacado, o problema a ser solucionado se refere a falta de voluntários ou mesmo a falta de mobilização e organização destes durantes períodos de crise e desastres, onde centenas e muitas vezes milhares de pessoas precisam de amparo urgente. A carência de um canal específico de recrutamento e ordenação para causas dessa categoria é um grande obstáculo, pois impossibilita que muitos, dispostos a ajudar, recebam as informações necessárias de imediato ou que saibam como e onde contribuir. Nossa plataforma fornecerá cadastramento organizado de ONGs e voluntários e será o canal de interação entre estes dois sujeitos.
+
+[Retorna](../README.md)
