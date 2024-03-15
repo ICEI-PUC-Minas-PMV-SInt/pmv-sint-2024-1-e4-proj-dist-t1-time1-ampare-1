@@ -64,7 +64,7 @@ Nossa implementação do SCRUM envolve os seguintes pontos:
 
 - **Board de Atividade:** Para monitorar e visualizar o fluxo das tarefas ao longo de todo o ciclo de desenvolvimento, fazemos uso de um board de atividades. Isso nos permitirá acompanhar o progresso das tarefas, identificar problemas e garantirá que o trabalho flua de acordo com os prazos esperados.
 
-  ![image]()
+  ![image](https://github.com/ICEI-PUC-Minas-PMV-SInt/pmv-sint-2024-1-e4-proj-dist-t1-time1-ampare-1/blob/main/docs/figuras/quadro-kanban.png?raw=true)
 
 ### Ferramentas
 
