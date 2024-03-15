@@ -30,11 +30,11 @@ Assim que a primeira versão do sistema estiver disponível, deverá complementa
 
 ## Etapa 1: Requisitos do produto
 
-- [Problemas e dores atuais](docs/problemas.md)
-- [Expectativas com o produto](docs/expectativas.md)
-- [Personas do produto](docs/personas.md)
-- [Entendendo as funcionalidades](docs/funcionalidades.md)
-- [Especificação das APIs](docs/apis.md)
+- [Problemas e dores atuais](docs/01-problemas.md)
+- [Expectativas com o produto](docs/02-expectativas.md)
+- [Personas do produto](docs/03-personas.md)
+- [Entendendo as funcionalidades](docs/04-funcionalidades.md), [Priorização](docs/04-priorizacao.md), [Restrições](docs/04-restricoes.md)
+- [Especificação das APIs](docs/05-apis.md)
 - [Roteiro de implementação](docs/roteiro-de-implementacao.md)
 
 ### Etapa 2: Integração de APIs com banco de dados e serviços externos
