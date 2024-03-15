@@ -75,3 +75,5 @@ Tendo como base essa análise, o projeto utilizou a ferramenta das personas para
 **Motivações e frustrações:** Ama participar de atividades sociais, por isso tem grande habilidade em relação ao seu trabalho. Após a perda de sua esposa intensificou sua colaboração em causas humanitárias e por isso criou a Organização Social Sem Fins Lucrativos "Missão Social" que ajuda pessoas em situação vulnerável, mediante tragédias e eventos traumáticos. Para o mesmo, um alcance maior das atividades da ONG seria um grande diferencial.
 **Hobbies**: Gosta de caminhar ao ar livre e ler.
 **Tecnologia**: Utiliza as redes sociais para divulgar os projetos da ONG.
+
+[Retorna](../README.md)
