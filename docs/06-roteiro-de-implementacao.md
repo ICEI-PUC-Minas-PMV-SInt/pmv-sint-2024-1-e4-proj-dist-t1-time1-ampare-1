@@ -75,3 +75,5 @@ Para garantir que o projeto Ampare seja bem-sucedido, utilizamos as seguintes fe
 - **Ferramentas de Comunicação:** Para manter uma comunicação ágil e eficaz entre os membros da equipe, utilizamos o Microsoft Teams e o WhatsApp. Ambas as ferramentas permitem que compartilhemos informações e coordenemos nossas atividades de maneira eficiente, até mesmo de forma assíncrona.
 
 - **Ferramentas de Desenho de Telas e Diagramas:** A criação de telas e diagramas desempenha um papel importante na definição da experiência do usuário. Utilizamos o Figma e o Miro para essas tarefas específicas. O Figma é uma escolha natural devido à sua capacidade de criar e iterar interfaces de usuário de forma colaborativa, enquanto o Miro nos ajuda a capturar e visualizar as necessidades da nossa solução por meio de diagramas claros e organizados. Além disso, para diagramas de classes, usamos o Lucidchart, que oferece uma plataforma versátil para criar e visualizar diagramas de classes.
+
+[Retorna](../README.md)
