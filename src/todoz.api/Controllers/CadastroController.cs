@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using ampare.api.Models;
 using ampare.api.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace ampare.api.Controllers
 {
@@ -9,56 +10,93 @@ namespace ampare.api.Controllers
     [Route("api/[controller]")]
     public class CadastroController : ControllerBase
     {
-        public CadastroController()
+        // definindo variável de contexto a partir do banco
+        private readonly AppDbContext _context;
+
+        public CadastroController(AppDbContext context)
         {
+            _context = context;
         }
 
+        // GET: api/Cadastro
         [HttpGet]
-        public ActionResult<List<Cadastro>> GetAll() =>
-            CadastroInMemory.GetAll();
-
-        [HttpGet("{id}")]
-        public ActionResult<Cadastro> Get(int id)
+        public async Task<ActionResult<IEnumerable<Cadastro>>> GetCadastro()
         {
-            var cadastro = CadastroInMemory.Get(id);
+            return await _context.Cadastros.ToListAsync();
+        }
+
+        // GET: api/Cadastro/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Cadastro>> GetCadastro(int id)
+        {
+            var cadastro = await _context.Cadastros.FindAsync(id);
 
             if (cadastro == null)
+            {
                 return NotFound();
+            }
 
             return cadastro;
         }
 
+        // POST: api/Cadastro
         [HttpPost]
-        public IActionResult Create(Cadastro cadastro)
+        public async Task<ActionResult<Cadastro>> Create(Cadastro cadastro)
         {
-            CadastroInMemory.Add(cadastro);
-            return CreatedAtAction(nameof(Get), new { id = cadastro.Id }, cadastro);
+            if (ModelState.IsValid)
+            {
+                _context.Cadastros.Add(cadastro);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction("GetCadastro", new { id = cadastro.Id }, cadastro);
+            }
+            {
+                return BadRequest(ModelState);
+            }
         }
 
+        // PUT: api/Cadastro/5
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Cadastro cadastro)
+        public async Task<IActionResult> Update(int id, Cadastro cadastro)
         {
             if (id != cadastro.Id)
+            {
                 return BadRequest();
+            }
 
-            var existingCadastro = CadastroInMemory.Get(id);
-            if (existingCadastro is null)
-                return NotFound();
+            _context.Entry(cadastro).State = EntityState.Modified;
 
-            CadastroInMemory.Update(cadastro);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (id != cadastro.Id)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return NoContent();
         }
 
+        // DELETE: api/Cadastro/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var cadastro = CadastroInMemory.Get(id);
-
-            if (cadastro is null)
+            var cadastro = await _context.Cadastros.FindAsync(id);
+            if (cadastro == null)
+            {
                 return NotFound();
+            }
 
-            CadastroInMemory.Delete(id);
+            _context.Cadastros.Remove(cadastro);
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
