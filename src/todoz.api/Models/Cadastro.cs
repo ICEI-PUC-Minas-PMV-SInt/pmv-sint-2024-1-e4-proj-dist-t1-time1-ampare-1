@@ -13,6 +13,9 @@ namespace ampare.api.Models
         public string Senha { get; set; }
         public string Telefone { get; set; }
         public string Endereco { get; set; }
+        [RegularExpression(@"^\d{14}$", ErrorMessage = "CNPJ inválido")]
+        public string Cnpj { get; set; }
+        public string RazaoSocial { get; set; }
         public bool IsComplete { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
