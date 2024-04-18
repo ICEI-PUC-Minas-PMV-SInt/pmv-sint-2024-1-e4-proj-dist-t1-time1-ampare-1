@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ampare.api.Models
 {
-    [Table("Cadastros")]
+    [Table("Ongs")]
     public class Ong
     {
         [Key]
