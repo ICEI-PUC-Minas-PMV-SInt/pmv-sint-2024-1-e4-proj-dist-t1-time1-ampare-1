@@ -1,10 +1,18 @@
-function App() {
+import { Container } from "@mui/material";
+import { Footer } from "./componets/Footer";
+import { Header } from "./componets/Header";
+import { ProjetoForm } from "./pages/ProjetoForm";
 
+function App() {
   return (
     <>
-      <h1>Home</h1>
+      <Header />
+      <Container>
+        <ProjetoForm />
+      </Container>
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
