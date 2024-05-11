@@ -1,8 +1,8 @@
 import { Container } from "@mui/material";
 import { Footer } from "./componets/Footer";
 import { Header } from "./componets/Header";
-import { ProjetoForm } from "./pages/ProjetoForm";
 import { OngForm } from "./pages/ONGForm";
+// import VisualizarONGs from "./pages/VisualizarONGs";
 
 function App() {
   return (
@@ -10,6 +10,8 @@ function App() {
       <Header />
       <Container>
         <OngForm />
+
+        {/* <VisualizarONGs /> */}
       </Container>
       <Footer />
     </>
