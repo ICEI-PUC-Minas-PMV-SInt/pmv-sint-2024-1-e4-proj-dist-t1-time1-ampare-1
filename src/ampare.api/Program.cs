@@ -38,8 +38,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseCors(
-        options => options.WithOrigins("*").AllowAnyMethod()
-    );
+// Enable CORS for all origins
+app.UseCors(builder => builder
+    .AllowAnyOrigin()
+       .AllowAnyMethod()
+          .AllowAnyHeader());
 
 app.Run();

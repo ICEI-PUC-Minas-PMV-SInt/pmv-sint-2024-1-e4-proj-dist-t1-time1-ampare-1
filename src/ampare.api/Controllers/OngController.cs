@@ -48,11 +48,13 @@ namespace ampare.api.Controllers
         {
             try
             {
+                /*
                 if (ong.Cnpj != null)
                 {
                     var companyName = await _cnpjService.GetCompanyName(ong.Cnpj);
                     ong.RazaoSocial = companyName;
                 }
+                */
 
                 _context.Ongs.Add(ong);
                 await _context.SaveChangesAsync();
