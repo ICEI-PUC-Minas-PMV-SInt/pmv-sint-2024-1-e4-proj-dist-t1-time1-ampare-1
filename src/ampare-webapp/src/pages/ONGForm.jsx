@@ -16,6 +16,7 @@ const ongMockedList = [
   { id: 3, label: "APATA" },
 ];
 
+
 export const OngForm = () => {
   const { register, handleSubmit } = useForm();
 
@@ -45,7 +46,7 @@ export const OngForm = () => {
                 <TextField
                   fullWidth
                   label="Razão Social"
-                  {...register("Nome")}
+                  {...register("razaoSocial")}
                 />
               </Grid>
               <Grid item xs={12}>
