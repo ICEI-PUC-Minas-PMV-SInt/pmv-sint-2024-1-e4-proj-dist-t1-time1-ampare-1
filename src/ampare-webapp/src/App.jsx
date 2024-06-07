@@ -7,7 +7,6 @@ import { Route, Router, Routes } from "react-router-dom";
 import { Home } from "./componets/Home";
 import { ProjetoForm } from "./pages/ProjetoForm";
 
-
 function App() {
   return (
     <>
