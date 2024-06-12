@@ -5,6 +5,7 @@ import { OngForm } from "./pages/OngForm";
 import { ProjetoVoluntario } from "./pages/ProjetoVoluntario";
 import { Route, Router, Routes } from "react-router-dom";
 import { Home } from "./componets/Home";
+import { ProjetoForm } from "./pages/ProjetoForm";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/cadastro-ong" element={<OngForm />} />
           {/* <Route path="/cadastro-voluntario" element={<VoluntarioForm />} /> */}
-          {/* <Route path="/cadastro-projeto" element={<ProjetoForm />} /> */}
+          <Route path="/cadastro-projeto" element={<ProjetoForm />} />
           <Route path="/listagem-projetos" element={<ProjetoVoluntario />} />
 
 
