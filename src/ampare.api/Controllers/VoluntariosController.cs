@@ -47,7 +47,7 @@ namespace ampare.api.Controllers
             _context.Voluntarios.Add(voluntario);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetVoluntario", new { id = voluntario.Id }, voluntario);
+            return CreatedAtAction("GetVoluntario", new { id = voluntario.VoluntarioId }, voluntario);
         }
 
         // PUT: api/voluntario/5
@@ -57,7 +57,7 @@ namespace ampare.api.Controllers
             try
             {
                 // Verifica se o ID passado na rota corresponde ao ID do cadastro
-                if (id != voluntario.Id)
+                if (id != voluntario.VoluntarioId)
                 {
                     return BadRequest("O ID fornecido n�o corresponde ao ID do cadastro.");
                 }
@@ -70,7 +70,7 @@ namespace ampare.api.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (id != voluntario.Id)
+                    if (id != voluntario.VoluntarioId)
                     {
                         return NotFound();
                     }
