@@ -7,24 +7,23 @@ import { Route, Router, Routes } from "react-router-dom";
 import { Home } from "./componets/Home";
 import { ProjetoForm } from "./pages/ProjetoForm";
 
+import VisualizarONGs from "./pages/VisualizarONGs";
+import CastroDeVoluntarios from "./pages/CadastroDeVoluntarios";
 
 function App() {
   return (
     <>
       <Header />
 
-      <Container >
+
+      <Container>
         <Routes>
           <Route index element={<Home />} />
           <Route path="/cadastro-ong" element={<OngForm />} />
           {/* <Route path="/cadastro-voluntario" element={<VoluntarioForm />} /> */}
           <Route path="/cadastro-projeto" element={<ProjetoForm />} />
           <Route path="/listagem-projetos" element={<ProjetoVoluntario />} />
-
-
-
         </Routes>
-
       </Container>
       <Footer />
     </>
