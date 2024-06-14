@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Typography, TextField, Button, Paper } from "@mui/material";
+import styled from "@emotion/styled";
 import axios from "axios";
-import styled from "styled-components";
 
 // Styles for the NGO cards and form
 const Container = styled.div`
@@ -45,7 +45,7 @@ const FormContainer = styled(Paper)`
   max-width: 600px;
 `;
 
-function CastroDeVoluntarios() {
+export const VoluntarioForm = () => {
   const [ongs, setOngs] = useState([]);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
@@ -94,7 +94,7 @@ function CastroDeVoluntarios() {
           </ONGCard>
         ))}
       </ONGContainer>
-      
+
       <FormContainer elevation={3}>
         <Typography variant="h4" gutterBottom>Cadastro de Voluntário</Typography>
         <form onSubmit={handleSubmit}>
@@ -136,6 +136,4 @@ function CastroDeVoluntarios() {
       </FormContainer>
     </Container>
   );
-}
-
-export default CadastroDeVoluntarios;
+};
