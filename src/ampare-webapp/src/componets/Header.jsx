@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Handshake, Home } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-const pages = [{ name: "ONG", link: "/cadastro-ong" }, { name: "Voluntário", link: "/" }, { name: "Projeto", link: "/cadastro-projeto" }, { name: "Ajudar um Projeto", link: "/" }];
+const pages = [{ name: "ONG", link: "/cadastro-ong" }, { name: "Voluntário", link: "/" }, { name: "Projeto", link: "/cadastro-projeto" }, { name: "Ajudar um Projeto", link: "/listagem-projetos" }];
 const settings = ["Meus Dados", "Sair"];
 
 export const Header = () => {

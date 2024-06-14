@@ -28,7 +28,7 @@ export const OngForm = () => {
   return (
     <Grid container sx={{ my: 3 }}>
       <Grid item xs={12}>
-        <Typography variant="h3">ONG</Typography>
+        <Typography variant="h3">Cadastro de ONG</Typography>
       </Grid>
       <Grid item xs={12}>
         <form onSubmit={handleSubmit(onSubmit)}>
