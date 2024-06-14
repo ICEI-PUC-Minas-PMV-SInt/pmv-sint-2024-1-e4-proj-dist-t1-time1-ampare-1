@@ -26,7 +26,7 @@ namespace ampare.api.Controllers
         
         // GET: api/Project
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Projeto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Project>>> GetAll()
         {
             return await _context.Projetos.ToListAsync();
         }
@@ -34,7 +34,7 @@ namespace ampare.api.Controllers
 
         // GET: api/projeto/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Projeto>> GetProject(int id)
+        public async Task<ActionResult<Project>> GetProject(int id)
         {
             var project = await _context.Projetos.FindAsync(id);
 
@@ -49,12 +49,12 @@ namespace ampare.api.Controllers
 
         // POST: api/
         [HttpPost]
-        public async Task<ActionResult<Projeto>>Create(Projeto projetos) 
+        public async Task<ActionResult<Project>>Create(Project projetos) 
         {
             _context.Projetos.Add(projetos);
             await _context.SaveChangesAsync();
 
-             return CreatedAtAction("GetProject", new { id = projetos.ProjetoId }, projetos);
+             return CreatedAtAction("GetProject", new { id = projetos.Id }, projetos);
 
            
         }
@@ -62,13 +62,13 @@ namespace ampare.api.Controllers
 
         // PUT: api/ong/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Projeto projeto)
+        public async Task<IActionResult> Update(int id, Project projeto)
         {
 
             try
             {
                 // Verifica se o ID passado na rota corresponde ao ID do cadastro
-                if (id != projeto.ProjetoId)
+                if (id != projeto.Id)
                 {
                     return BadRequest("O ID fornecido n�o corresponde ao ID do cadastro.");
                 }
@@ -82,7 +82,7 @@ namespace ampare.api.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (id != projeto.ProjetoId)
+                    if (id != projeto.Id)
                     {
                         return NotFound();
                     }

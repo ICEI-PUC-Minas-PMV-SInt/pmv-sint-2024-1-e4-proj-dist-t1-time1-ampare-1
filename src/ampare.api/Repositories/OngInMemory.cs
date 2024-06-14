@@ -11,7 +11,7 @@ public static class OngInMemory
         Ongs = new List<Ong>
         {
             new Ong { 
-                OngId = 1, 
+                Id = 1, 
                 Nome = "Ong1",
                 Email = "ong1@ong.org",
                 Senha = "123456",
@@ -20,7 +20,7 @@ public static class OngInMemory
                 IsComplete = true  
                 },
             new Ong {
-                OngId = 2,
+                Id = 2,
                 Nome = "Ong2",
                 Email = "ong2@ong.org",
                 Senha = "123456",
@@ -33,11 +33,11 @@ public static class OngInMemory
 
     public static List<Ong> GetAll() => Ongs; 
 
-    public static Ong Get(int id) => Ongs.FirstOrDefault(t => t.OngId == id); 
+    public static Ong Get(int id) => Ongs.FirstOrDefault(t => t.Id == id); 
 
     public static void Add(Ong ong)
     {
-        ong.OngId = nextId++;
+        ong.Id = nextId++;
         Ongs.Add(ong); 
     }
 
@@ -52,7 +52,7 @@ public static class OngInMemory
 
     public static void Update(Ong ong)
     {
-        var index = Ongs.FindIndex(t => t.OngId == ong.OngId); 
+        var index = Ongs.FindIndex(t => t.Id == ong.Id); 
         if (index == -1)
             return;
 
