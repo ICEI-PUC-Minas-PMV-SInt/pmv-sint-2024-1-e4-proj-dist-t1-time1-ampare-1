@@ -1,80 +1,68 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ampare.api.Models;
-using ampare.api.Repositories;
 using Microsoft.EntityFrameworkCore;
 using ampare.api.Services;
 using Newtonsoft.Json;
-using Microsoft.Extensions.Logging;
 
 namespace ampare.api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProjetosController : ControllerBase
+    public class VoluntariosController : ControllerBase
     {
-           
+        // definindo vari�vel de contexto a partir do banco
+        private readonly AppDbContext _context;
 
-          private readonly AppDbContext _context;
-        
-
-        public ProjetosController(AppDbContext context)
+        public VoluntariosController(AppDbContext context)
         {
             _context = context;
-        
         }
 
-        
-        // GET: api/Project
+        // GET: api/Cadastro
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Project>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Voluntario>>> GetVoluntario()
         {
-            return await _context.Projetos.ToListAsync();
+            return await _context.Voluntarios.ToListAsync();
         }
 
-
-        // GET: api/projeto/5
+        // GET: api/Voluntario/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Project>> GetProject(int id)
+        public async Task<ActionResult<Voluntario>> GetVoluntario(int id)
         {
-            var project = await _context.Projetos.FindAsync(id);
+            var voluntario = await _context.Voluntarios.FindAsync(id);
 
-            if (project == null)
+            if (voluntario == null)
             {
                 return NotFound();
             }
 
-            return project;
+            return voluntario;
         }
 
-
-        // POST: api/
+        // POST: api/Voluntario
         [HttpPost]
-        public async Task<ActionResult<Project>>Create(Project projetos) 
-        {
-            _context.Projetos.Add(projetos);
+        public async Task<ActionResult<Voluntario>> Create(Voluntario voluntario)
+        {         
+
+            _context.Voluntarios.Add(voluntario);
             await _context.SaveChangesAsync();
 
-             return CreatedAtAction("GetProject", new { id = projetos.Id }, projetos);
-
-           
+            return CreatedAtAction("GetVoluntario", new { id = voluntario.VoluntarioId }, voluntario);
         }
 
-
-        // PUT: api/ong/5
+        // PUT: api/voluntario/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Project projeto)
+        public async Task<IActionResult> Update(int id, Voluntario voluntario)
         {
-
             try
             {
                 // Verifica se o ID passado na rota corresponde ao ID do cadastro
-                if (id != projeto.Id)
+                if (id != voluntario.VoluntarioId)
                 {
                     return BadRequest("O ID fornecido n�o corresponde ao ID do cadastro.");
                 }
-    
 
-                _context.Entry(projeto).State = EntityState.Modified;
+                _context.Entry(voluntario).State = EntityState.Modified;
 
                 try
                 {
@@ -82,7 +70,7 @@ namespace ampare.api.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (id != projeto.Id)
+                    if (id != voluntario.VoluntarioId)
                     {
                         return NotFound();
                     }
@@ -98,24 +86,23 @@ namespace ampare.api.Controllers
             {
                 return StatusCode(500, $"Erro ao atualizar cadastro: {ex.Message}");
             }
-        }    
+        }
 
-        // DELETE: api/ong/5
+
+        // DELETE: api/voluntario/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var projeto = await _context.Projetos.FindAsync(id);
-            if (projeto == null)
+            var voluntario = await _context.Voluntarios.FindAsync(id);
+            if (voluntario == null)
             {
                 return NotFound();
             }
 
-            _context.Projetos.Remove(projeto);
+            _context.Voluntarios.Remove(voluntario);
             await _context.SaveChangesAsync();
 
             return NoContent();
-        } 
+        }
     }
 }
-
-     

@@ -20,6 +20,37 @@ Para voluntários, que desejam encontrar, de maneira prática, projetos de ajuda
 <li>Raquel Bomjardim Ferreira - [@bomjardimraquel](https://github.com/bomjardimraquel)
 <ul>
 
+### Como rodar este projeto
+
+- O projeto está dividido em 2 aplicações: Front-end e Back-end
+- Pré-requisitos:
+  - NodeJS deve estar instalado.
+  - .NET CLI e Entity Framework Tools devem estar instalados.
+  - Docker deve estar instalado.
+
+## Inicie o banco de dados através do docker compose
+
+- Navegue até a pasta src/ampare.api
+- Execute o comando:
+  docker compose up -d
+- Rode as migrations utilizando o seguinte comando:
+  dotnet ef database update
+
+## Inicie a API
+
+- Navegue até a pasta src/ampare.api
+- Execute os seguintes comando:
+  dotnet build
+  dotnet watch
+
+## Inicie a Aplicação Web
+
+- Navegue até a pasta src/ampare-webapp
+- Instale as dependências:
+  npm install
+- Inicie o projeto:
+  npm run dev
+
 ### 🖊️ Orientador
 
 Prof. Luiz Alberto Ferreira Gomes

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-
 using ampare.api.Models;
 using ampare.api.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -10,13 +9,13 @@ namespace ampare.api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CadastroController : ControllerBase
+    public class OngController : ControllerBase
     {
-        // definindo variável de contexto a partir do banco
+        // definindo variï¿½vel de contexto a partir do banco
         private readonly AppDbContext _context;
         private readonly CnpjService _cnpjService;
 
-        public CadastroController(AppDbContext context, CnpjService cnpjService)
+        public OngController(AppDbContext context, CnpjService cnpjService)
         {
             _context = context;
             _cnpjService = cnpjService;
@@ -24,67 +23,69 @@ namespace ampare.api.Controllers
 
         // GET: api/Cadastro
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cadastro>>> GetCadastro()
+        public async Task<ActionResult<IEnumerable<Ong>>> GetOng()
         {
-            return await _context.Cadastros.ToListAsync();
+            return await _context.Ongs.ToListAsync();
         }
 
-        // GET: api/Cadastro/5
+        // GET: api/Ong/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cadastro>> GetCadastro(int id)
+        public async Task<ActionResult<Ong>> GetOng(int id)
         {
-            var cadastro = await _context.Cadastros.FindAsync(id);
+            var ong = await _context.Ongs.FindAsync(id);
 
-            if (cadastro == null)
+            if (ong == null)
             {
                 return NotFound();
             }
 
-            return cadastro;
+            return ong;
         }
 
-        // POST: api/Cadastro
+        // POST: api/Ong
         [HttpPost]
-        public async Task<ActionResult<Cadastro>> Create(Cadastro cadastro)
+        public async Task<ActionResult<Ong>> Create(Ong ong)
         {
             try
             {
-                if (cadastro.Cnpj != null)
+                /*
+                if (ong.Cnpj != null)
                 {
-                    var companyName = await _cnpjService.GetCompanyName(cadastro.Cnpj);
-                    cadastro.RazaoSocial = companyName;
+                    var companyName = await _cnpjService.GetCompanyName(ong.Cnpj);
+                    ong.RazaoSocial = companyName;
                 }
+                */
 
-                _context.Cadastros.Add(cadastro);
+                _context.Ongs.Add(ong);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction("GetCadastro", new { id = cadastro.Id }, cadastro);
+                return CreatedAtAction("GetOng", new { id = ong.OngId }, ong);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Erro ao criar cadastro: {ex.Message}");
+                return StatusCode(500, $"Erro ao criar ong: {ex.Message}");
             }
         }
 
-        // PUT: api/Cadastro/5
+        // PUT: api/ong/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Cadastro cadastro)
+        public async Task<IActionResult> Update(int id, Ong ong)
         {
             try
             {
                 // Verifica se o ID passado na rota corresponde ao ID do cadastro
-                if (id != cadastro.Id)
+                if (id != ong.OngId)
                 {
-                    return BadRequest("O ID fornecido não corresponde ao ID do cadastro.");
+                    return BadRequest("O ID fornecido nï¿½o corresponde ao ID do cadastro.");
                 }
 
-                if (cadastro.Cnpj != null)
+                if (ong.Cnpj != null)
                 {
-                    var companyName = await _cnpjService.GetCompanyName(cadastro.Cnpj);
-                    cadastro.RazaoSocial = companyName;
+                    var companyName = await _cnpjService.GetCompanyName(ong.Cnpj);
+                    ong.RazaoSocial = companyName;
                 }
 
-                _context.Entry(cadastro).State = EntityState.Modified;
+                _context.Entry(ong).State = EntityState.Modified;
 
                 try
                 {
@@ -92,7 +93,7 @@ namespace ampare.api.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (id != cadastro.Id)
+                    if (id != ong.OngId)
                     {
                         return NotFound();
                     }
@@ -110,17 +111,17 @@ namespace ampare.api.Controllers
             }
         }  
 
-        // DELETE: api/Cadastro/5
+        // DELETE: api/ong/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var cadastro = await _context.Cadastros.FindAsync(id);
-            if (cadastro == null)
+            var ong = await _context.Ongs.FindAsync(id);
+            if (ong == null)
             {
                 return NotFound();
             }
 
-            _context.Cadastros.Remove(cadastro);
+            _context.Ongs.Remove(ong);
             await _context.SaveChangesAsync();
 
             return NoContent();
