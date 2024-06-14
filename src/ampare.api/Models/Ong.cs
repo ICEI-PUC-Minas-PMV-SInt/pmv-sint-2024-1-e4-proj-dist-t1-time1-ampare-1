@@ -7,7 +7,7 @@ namespace ampare.api.Models
     public class Ong
     {
         [Key]
-        public int OngId { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Nome { get; set; }
         [Required]
@@ -22,7 +22,7 @@ namespace ampare.api.Models
         public string RazaoSocial { get; set; }
         public bool IsComplete { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public ICollection<Projeto> Projetos { get; set; }
+        public ICollection<Project> Projetos { get; set; }
         
     }
 }

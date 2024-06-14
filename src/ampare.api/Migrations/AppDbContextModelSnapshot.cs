@@ -24,11 +24,11 @@ namespace ampare.api.Migrations
 
             modelBuilder.Entity("ampare.api.Models.Ong", b =>
                 {
-                    b.Property<int>("OngId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OngId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Cnpj")
                         .HasColumnType("nvarchar(max)");
@@ -61,33 +61,18 @@ namespace ampare.api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("OngId");
+                    b.HasKey("Id");
 
                     b.ToTable("Ongs");
                 });
 
-            modelBuilder.Entity("ampare.api.Models.ProjetoVoluntario", b =>
-                {
-                    b.Property<int>("ProjetoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VoluntarioId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProjetoId", "VoluntarioId");
-
-                    b.HasIndex("VoluntarioId");
-
-                    b.ToTable("ProjetoVoluntario");
-                });
-
             modelBuilder.Entity("ampare.api.Models.Voluntario", b =>
                 {
-                    b.Property<int>("VoluntarioId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VoluntarioId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Cpf")
                         .HasColumnType("nvarchar(max)");
@@ -112,23 +97,24 @@ namespace ampare.api.Migrations
                     b.Property<string>("Telefone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("VoluntarioId");
+                    b.HasKey("Id");
 
                     b.ToTable("Voluntarios");
                 });
 
-            modelBuilder.Entity("Projeto", b =>
+            modelBuilder.Entity("Project", b =>
                 {
-                    b.Property<int>("ProjetoId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProjetoId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OngId")
@@ -138,39 +124,31 @@ namespace ampare.api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ProjetoId");
+                    b.Property<int?>("VoluntarioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("OngId");
+
+                    b.HasIndex("VoluntarioId");
 
                     b.ToTable("Projetos");
                 });
 
-            modelBuilder.Entity("ampare.api.Models.ProjetoVoluntario", b =>
+            modelBuilder.Entity("Project", b =>
                 {
-                    b.HasOne("Projeto", "Projeto")
-                        .WithMany("ProjetoVoluntario")
-                        .HasForeignKey("ProjetoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ampare.api.Models.Voluntario", "Voluntario")
-                        .WithMany("ProjetoVoluntario")
-                        .HasForeignKey("VoluntarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Projeto");
-
-                    b.Navigation("Voluntario");
-                });
-
-            modelBuilder.Entity("Projeto", b =>
-                {
-                    b.HasOne("ampare.api.Models.Ong", null)
+                    b.HasOne("ampare.api.Models.Ong", "Ong")
                         .WithMany("Projetos")
                         .HasForeignKey("OngId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ampare.api.Models.Voluntario", null)
+                        .WithMany("Projetos")
+                        .HasForeignKey("VoluntarioId");
+
+                    b.Navigation("Ong");
                 });
 
             modelBuilder.Entity("ampare.api.Models.Ong", b =>
@@ -180,12 +158,7 @@ namespace ampare.api.Migrations
 
             modelBuilder.Entity("ampare.api.Models.Voluntario", b =>
                 {
-                    b.Navigation("ProjetoVoluntario");
-                });
-
-            modelBuilder.Entity("Projeto", b =>
-                {
-                    b.Navigation("ProjetoVoluntario");
+                    b.Navigation("Projetos");
                 });
 #pragma warning restore 612, 618
         }

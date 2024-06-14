@@ -7,7 +7,7 @@ namespace ampare.api.Models
     public class Voluntario
     {
         [Key]
-        public int VoluntarioId { get; set; }
+        public int Id { get; set; }
         public string Nome { get; set; }
         [Required]
         [EmailAddress]
@@ -20,7 +20,7 @@ namespace ampare.api.Models
         [RegularExpression(@"^\d{11}$", ErrorMessage = "CPF inv�lido")]
         public string Cpf { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public ICollection<ProjetoVoluntario> ProjetoVoluntario { get; set; }
+        public ICollection<Project> Projetos { get; set; }
         
     }
 }
