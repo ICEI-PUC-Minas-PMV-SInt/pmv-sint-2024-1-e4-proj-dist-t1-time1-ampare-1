@@ -7,27 +7,27 @@ using Newtonsoft.Json;
 
 
 [ Table("Projetos")]
-public class Projeto {
+public class Project {
 
     [Key]
-    public int ProjetoId {get; set;}
+    public int Id {get; set;}
 
-    
+    [Required]
     public int OngId {get; set;}
 
         [Required]
     public string ProjectName {get; set;}
     
-    
+    [Required]
+    public Ong Ong {get;set;}
+    // navegação virtual para carregar e trazer informações da classe Ong relacionada ao projeto
 
 
-  
+    [Required]
     public DateTime CreatedAt {get;set;}
 
-   
+    [Required]
     public string Description {get;set;}
-
-    public ICollection<ProjetoVoluntario> ProjetoVoluntario { get; set; }
 
     
     public enum HelpNeeded {
