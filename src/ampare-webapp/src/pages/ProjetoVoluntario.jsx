@@ -12,7 +12,7 @@ export const ProjetoVoluntario = () => {
 
     useEffect(() => {
         const fetchProjetos = async () => {
-            const response = await axios.get(import.meta.env.VITE_API_URL);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/ProjetoVoluntario`);
             setProjetos(response.data);
         };
 
@@ -20,7 +20,7 @@ export const ProjetoVoluntario = () => {
     }, []);
 
     const handleInscricao = (projetoId) => {
-        console.log(`Inscri��o para o projeto ${projetoId} realizada!`);
+        console.log(`Inscrição para o projeto ${projetoId} realizada!`);
     };
 
     return (
