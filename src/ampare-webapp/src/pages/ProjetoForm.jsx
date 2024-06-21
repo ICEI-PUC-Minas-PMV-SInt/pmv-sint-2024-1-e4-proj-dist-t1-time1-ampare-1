@@ -19,15 +19,16 @@ const ongMockedList = [
 export const ProjetoForm = () => {
   const { register, handleSubmit } = useForm();
 
+
   const onSubmit = async (data) => {
-    await axios.post(import.meta.env.VITE_API_URL, data);
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/Projetos`, data);
     console.log(data);
   };
 
   return (
     <Grid container sx={{ my: 3 }}>
       <Grid item xs={12}>
-        <Typography variant="h3">Projeto</Typography>
+        <Typography variant="h3">Cadastro de Projeto</Typography>
       </Grid>
       <Grid item xs={12}>
         <form onSubmit={handleSubmit(onSubmit)}>

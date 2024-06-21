@@ -20,13 +20,14 @@ export const ProjetoVoluntario = () => {
     }, []);
 
     const handleInscricao = (projetoId) => {
+
         console.log(`Inscrição para o projeto ${projetoId} realizada!`);
     };
 
     return (
         <Grid container sx={{ my: 3 }} spacing={2}>
             <Grid item xs={12}>
-                <Typography variant="h3">Projetos</Typography>
+                <Typography variant="h3">Ajude um Projeto</Typography>
             </Grid>
             {projetos.map((projeto, index) => (
                 <Grid item xs={6} key={index}>
