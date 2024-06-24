@@ -16,7 +16,6 @@ export const OngForm = () => {
 
   const onSubmit = async (data) => {
     await axios.post(`${import.meta.env.VITE_API_URL}/api/Ong`, data).then(() => toast.success('ONG cadastrada com sucesso!')).catch(() => toast.error('Erro ao cadastrar ONG!'));
-    console.log(data);
   };
 
   return (
