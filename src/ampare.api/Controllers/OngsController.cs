@@ -59,7 +59,7 @@ namespace ampare.api.Controllers
                 _context.Ongs.Add(ong);
                 await _context.SaveChangesAsync();
 
-                return CreatedAtAction("GetOng", new { id = ong.Id }, ong);
+                return CreatedAtAction("GetOng", new { id = ong.OngId }, ong);
             }
             catch (Exception ex)
             {
@@ -74,7 +74,7 @@ namespace ampare.api.Controllers
             try
             {
                 // Verifica se o ID passado na rota corresponde ao ID do cadastro
-                if (id != ong.Id)
+                if (id != ong.OngId)
                 {
                     return BadRequest("O ID fornecido n�o corresponde ao ID do cadastro.");
                 }
@@ -93,7 +93,7 @@ namespace ampare.api.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (id != ong.Id)
+                    if (id != ong.OngId)
                     {
                         return NotFound();
                     }

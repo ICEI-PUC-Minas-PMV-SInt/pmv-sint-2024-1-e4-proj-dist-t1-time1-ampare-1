@@ -27,8 +27,8 @@ public class VoluntariosControllerTests
     public async Task GetVoluntario_ReturnsAllVoluntarios()
     {
         // Arrange
-        _context.Voluntarios.Add(new Voluntario { Id = 1, Nome = "Voluntario 1" });
-        _context.Voluntarios.Add(new Voluntario { Id = 2, Nome = "Voluntario 2" });
+        _context.Voluntarios.Add(new Voluntario { VoluntarioId = 1, Nome = "Voluntario 1" });
+        _context.Voluntarios.Add(new Voluntario { VoluntarioId = 2, Nome = "Voluntario 2" });
         await _context.SaveChangesAsync();
 
         // Act
@@ -44,7 +44,7 @@ public class VoluntariosControllerTests
     public async Task GetVoluntario_ReturnsVoluntarioById()
     {
         // Arrange
-        var voluntario = new Voluntario { Id = 1, Nome = "Voluntario 1" };
+        var voluntario = new Voluntario { VoluntarioId = 1, Nome = "Voluntario 1" };
         _context.Voluntarios.Add(voluntario);
         await _context.SaveChangesAsync();
 
@@ -54,14 +54,14 @@ public class VoluntariosControllerTests
         // Assert
         var actionResult = Assert.IsType<ActionResult<Voluntario>>(result);
         var returnedVoluntario = Assert.IsType<Voluntario>(actionResult.Value);
-        Assert.Equal(voluntario.Id, returnedVoluntario.Id);
+        Assert.Equal(voluntario.VoluntarioId, returnedVoluntario.VoluntarioId);
     }
 
     
     public async Task Create_AddsNewVoluntario()
     {
         // Arrange
-        var voluntario = new Voluntario { Id = 1, Nome = "Voluntario 1" };
+        var voluntario = new Voluntario { VoluntarioId = 1, Nome = "Voluntario 1" };
 
         // Act
         var result = await _controller.Create(voluntario);
@@ -70,14 +70,14 @@ public class VoluntariosControllerTests
         var actionResult = Assert.IsType<ActionResult<Voluntario>>(result);
         var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(actionResult.Result);
         var createdVoluntario = Assert.IsType<Voluntario>(createdAtActionResult.Value);
-        Assert.Equal(voluntario.Id, createdVoluntario.Id);
+        Assert.Equal(voluntario.VoluntarioId, createdVoluntario.VoluntarioId);
     }
 
     
     public async Task Update_UpdatesVoluntario()
     {
         // Arrange
-        var voluntario = new Voluntario { Id = 1, Nome = "Voluntario 1" };
+        var voluntario = new Voluntario { VoluntarioId = 1, Nome = "Voluntario 1" };
         _context.Voluntarios.Add(voluntario);
         await _context.SaveChangesAsync();
 
@@ -96,7 +96,7 @@ public class VoluntariosControllerTests
     public async Task Delete_RemovesVoluntario()
     {
         // Arrange
-        var voluntario = new Voluntario { Id = 1, Nome = "Voluntario 1" };
+        var voluntario = new Voluntario { VoluntarioId = 1, Nome = "Voluntario 1" };
         _context.Voluntarios.Add(voluntario);
         await _context.SaveChangesAsync();
 
