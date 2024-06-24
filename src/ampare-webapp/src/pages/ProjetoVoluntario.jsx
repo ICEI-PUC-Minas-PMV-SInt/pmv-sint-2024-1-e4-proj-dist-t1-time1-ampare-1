@@ -12,7 +12,7 @@ export const ProjetoVoluntario = () => {
 
     useEffect(() => {
         const fetchProjetos = async () => {
-            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/ProjetoVoluntario`);
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/Projetos`);
             setProjetos(response.data);
         };
 
@@ -32,8 +32,8 @@ export const ProjetoVoluntario = () => {
             {projetos.map((projeto, index) => (
                 <Grid item xs={6} key={index}>
                     <Paper sx={{ my: 3, p: 4 }} variant="outlined">
-                        <Typography variant="h5">{projeto.nome}</Typography>
-                        <Typography variant="body1">{projeto.descricao}</Typography>
+                        <Typography variant="h5">{projeto.projectName}</Typography>
+                        <Typography variant="body1">{projeto.description}</Typography>
                         <Button variant="contained" onClick={() => handleInscricao(projeto.id)} disableElevation>
                             Inscrever-se
                         </Button>
