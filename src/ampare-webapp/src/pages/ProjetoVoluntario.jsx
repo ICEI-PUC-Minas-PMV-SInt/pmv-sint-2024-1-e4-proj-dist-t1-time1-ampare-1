@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from 'react-toastify';
 
 export const ProjetoVoluntario = () => {
     const [projetos, setProjetos] = useState([]);
@@ -40,8 +41,10 @@ export const ProjetoVoluntario = () => {
     }, []);
 
     const handleInscricao = async () => {
-        await axios.post(`${import.meta.env.VITE_API_URL}/api/ProjetoVoluntario`, { ProjetoId: projetoSelecionado, VoluntarioId: voluntarioSelecionado });
-        console.log(`Inscrição para o projeto ${projetoSelecionado} realizada!`);
+        await axios
+            .post(`${import.meta.env.VITE_API_URL}/api/ProjetoVoluntario`, { ProjetoId: projetoSelecionado, VoluntarioId: voluntarioSelecionado })
+            .then(() => { toast.success("Voluntário cadastrado com sucesso no projeto!") })
+            .catch(() => toast.error("Erro ao cadastrar voluntário no projeto!"));
         handleConfirmation();
     };
 
