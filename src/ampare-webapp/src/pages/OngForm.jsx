@@ -9,20 +9,13 @@ import {
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
-
-const ongMockedList = [
-  { id: 1, label: "OXFAM" },
-  { id: 2, label: "Catapiri" },
-  { id: 3, label: "APATA" },
-];
-
+import { toast } from 'react-toastify';
 
 export const OngForm = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
-    await axios.post(`${import.meta.env.VITE_API_URL}/api/Ong`, data);
-    console.log(data);
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/Ong`, data).then(() => toast.success('ONG cadastrada com sucesso!')).catch(() => toast.error('Erro ao cadastrar ONG!'));
   };
 
   return (
