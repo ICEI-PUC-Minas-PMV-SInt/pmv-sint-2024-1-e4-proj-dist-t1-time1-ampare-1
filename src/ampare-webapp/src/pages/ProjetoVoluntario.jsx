@@ -12,7 +12,7 @@ export const ProjetoVoluntario = () => {
 
     useEffect(() => {
         const fetchProjetos = async () => {
-            const response = await axios.get(import.meta.env.VITE_API_URL)/api/ProjetoVoluntario`, data;
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/ProjetoVoluntario`);
             setProjetos(response.data);
         };
 
