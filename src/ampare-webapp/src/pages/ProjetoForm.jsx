@@ -1,28 +1,34 @@
 import {
   Autocomplete,
   Button,
+  FormControl,
   Grid,
+  InputLabel,
+  MenuItem,
   Paper,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-
-const ongMockedList = [
-  { id: 1, label: "OXFAM" },
-  { id: 2, label: "Catapiri" },
-  { id: 3, label: "APATA" },
-];
+import { toast } from 'react-toastify';
 
 export const ProjetoForm = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue, getValues } = useForm();
+  const [ongList, setOngList] = React.useState([]);
 
+  useEffect(() => {
+    const fetchOngs = async () => {
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/Ong`);
+      setOngList(data);
+    };
+    fetchOngs();
+  }, []);
 
   const onSubmit = async (data) => {
-    await axios.post(`${import.meta.env.VITE_API_URL}/api/Projetos`, data);
-    console.log(data);
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/Projetos`, data).then(() => toast.success('Projeto cadastrado com sucesso!')).catch(() => toast.error('Erro ao cadastrar projeto!'));
   };
 
   return (
@@ -35,16 +41,23 @@ export const ProjetoForm = () => {
           <Paper sx={{ my: 3, p: 4 }} variant="outlined">
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Autocomplete
-                  disablePortal
-                  id="ong-selector"
-                  options={ongMockedList}
-                  sx={{ width: 300 }}
-                  renderInput={(params) => (
-                    <TextField {...params} label="ONG" />
-                  )}
-                  {...register("ongId")}
-                />
+                <FormControl fullWidth size="medium">
+                  <InputLabel htmlFor="select-ongs">ONG</InputLabel>
+                  <Select
+                    labelId="select-ongs"
+                    id="select-ongs"
+                    value={getValues("ongId")}
+                    placeholder="Escolha uma ONG"
+                    label="ONG"
+                    onChange={(event) => {
+                      setValue('ongId', event.target.value);
+                    }}
+                  >
+                    {ongList.map(({ ongId, nome }) => (
+                      <MenuItem value={ongId}>{nome}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <TextField

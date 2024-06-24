@@ -7,7 +7,8 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "./componets/Home";
 import { ProjetoForm } from "./pages/ProjetoForm";
 import { VoluntarioForm } from "./pages/VoluntarioForm";
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/listagem-projetos" element={<ProjetoVoluntario />} />
         </Routes>
       </Container>
+      <ToastContainer />
       <Footer />
     </>
   );
