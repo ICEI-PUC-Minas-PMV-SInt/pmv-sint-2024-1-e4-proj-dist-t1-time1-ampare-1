@@ -87,10 +87,25 @@ const CadastroDeVoluntarios = () => {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  label="Mensagem"
+                  label="Endereço"
                   multiline
                   rows={4}
-                  {...register("mensagem")}
+                  {...register("endereco")}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Senha"
+                  type="password"
+                  {...register("senha")}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="CPF"
+                  {...register("cpf")}
                 />
               </Grid>
               <Grid item>
