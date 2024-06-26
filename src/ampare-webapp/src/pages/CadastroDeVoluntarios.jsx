@@ -15,7 +15,7 @@ const CadastroDeVoluntarios = () => {
   const { register, handleSubmit, reset } = useForm();
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/api/ongs`) // Use the same API URL pattern
+    axios.get(`${import.meta.env.VITE_API_URL}/api/ongs`) 
       .then((response) => {
         setOngs(response.data);
       })
@@ -28,7 +28,7 @@ const CadastroDeVoluntarios = () => {
     await axios.post(`${import.meta.env.VITE_API_URL}/api/voluntarios`, data)
       .then((response) => {
         toast.success('Voluntário cadastrado com sucesso!');
-        reset(); // Clear form fields after submission
+        reset(); 
       })
       .catch((error) => {
         toast.error('Erro ao cadastrar voluntário!');
