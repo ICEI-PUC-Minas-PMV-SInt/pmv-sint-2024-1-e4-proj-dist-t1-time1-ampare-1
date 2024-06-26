@@ -10,7 +10,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 
-const CadastroDeVoluntarios = () => {
+export const VoluntarioForm = () => {
   const [ongs, setOngs] = useState([]);
   const { register, handleSubmit, reset } = useForm();
 
@@ -121,4 +121,3 @@ const CadastroDeVoluntarios = () => {
   );
 };
 
-export default CadastroDeVoluntarios;
