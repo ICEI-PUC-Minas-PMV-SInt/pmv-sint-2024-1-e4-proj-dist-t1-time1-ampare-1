@@ -2,16 +2,16 @@ using ampare.api.Models;
 
 namespace ampare.api.Repositories;
 
-public static class CadastroInMemory
+public static class OngInMemory
 {
-    static List<Cadastro> Cadastros { get; }
+    static List<Ong> Ongs { get; }
     static int nextId = 3;
-    static CadastroInMemory()
+    static OngInMemory()
     {
-        Cadastros = new List<Cadastro>
+        Ongs = new List<Ong>
         {
-            new Cadastro { 
-                Id = 1, 
+            new Ong { 
+                OngId = 1, 
                 Nome = "Ong1",
                 Email = "ong1@ong.org",
                 Senha = "123456",
@@ -19,8 +19,8 @@ public static class CadastroInMemory
                 Endereco = "Rua 1, 123",                               
                 IsComplete = true  
                 },
-            new Cadastro {
-                Id = 2,
+            new Ong {
+                OngId = 2,
                 Nome = "Ong2",
                 Email = "ong2@ong.org",
                 Senha = "123456",
@@ -31,31 +31,31 @@ public static class CadastroInMemory
         };
     }
 
-    public static List<Cadastro> GetAll() => Cadastros; 
+    public static List<Ong> GetAll() => Ongs; 
 
-    public static Cadastro? Get(int id) => Cadastros.FirstOrDefault(t => t.Id == id); 
+    public static Ong Get(int id) => Ongs.FirstOrDefault(t => t.OngId == id); 
 
-    public static void Add(Cadastro cadastro)
+    public static void Add(Ong ong)
     {
-        cadastro.Id = nextId++;
-        Cadastros.Add(cadastro); 
+        ong.OngId = nextId++;
+        Ongs.Add(ong); 
     }
 
     public static void Delete(int id)
     {
-        var cadastro = Get(id); 
-        if (cadastro is null)
+        var ong = Get(id); 
+        if (ong is null)
             return;
 
-        Cadastros.Remove(cadastro); 
+        Ongs.Remove(ong); 
     }
 
-    public static void Update(Cadastro cadastro)
+    public static void Update(Ong ong)
     {
-        var index = Cadastros.FindIndex(t => t.Id == cadastro.Id); 
+        var index = Ongs.FindIndex(t => t.OngId == ong.OngId); 
         if (index == -1)
             return;
 
-        Cadastros[index] = cadastro; 
+        Ongs[index] = ong; 
     }
 }
