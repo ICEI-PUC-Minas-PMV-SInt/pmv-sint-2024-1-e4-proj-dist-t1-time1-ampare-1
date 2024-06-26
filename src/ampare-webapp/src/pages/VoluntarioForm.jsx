@@ -1,59 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Typography, TextField, Button, Paper } from "@mui/material";
-import styled from "@emotion/styled";
+import {
+  Button,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
+import { useForm } from "react-hook-form";
+import { toast } from 'react-toastify';
 
-// Styles for the NGO cards and form
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-`;
-
-const ONGContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 20px;
-`;
-
-const ONGCard = styled.div`
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin: 10px;
-  width: 300px;
-`;
-
-const ONGTitulo = styled.h2`
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
-
-const ONGDescricao = styled.p`
-  margin-bottom: 10px;
-`;
-
-const ONGContato = styled.p`
-  font-style: italic;
-`;
-
-const FormContainer = styled(Paper)`
-  padding: 20px;
-  margin: 20px;
-  width: 100%;
-  max-width: 600px;
-`;
-
-export const VoluntarioForm = () => {
+const CadastroDeVoluntarios = () => {
   const [ongs, setOngs] = useState([]);
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [mensagem, setMensagem] = useState("");
+  const { register, handleSubmit, reset } = useForm();
 
   useEffect(() => {
-    axios.get("https://your-api-endpoint/ongs") // Replace with your API endpoint
+    axios.get(`${import.meta.env.VITE_API_URL}/api/ongs`)
       .then((response) => {
         setOngs(response.data);
       })
@@ -62,78 +24,101 @@ export const VoluntarioForm = () => {
       });
   }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission
-    const voluntario = { nome, email, telefone, mensagem };
-    console.log(voluntario);
-    // Optionally, send this data to an API
-    axios.post("https://your-api-endpoint/voluntarios", voluntario)
+  const onSubmit = async (data) => {
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/voluntarios`, data)
       .then((response) => {
-        console.log("Voluntário cadastrado com sucesso:", response.data);
-        // Clear form fields after submission
-        setNome("");
-        setEmail("");
-        setTelefone("");
-        setMensagem("");
+        toast.success('Voluntário cadastrado com sucesso!');
+        reset();
       })
       .catch((error) => {
+        toast.error('Erro ao cadastrar voluntário!');
         console.error("Erro ao cadastrar voluntário:", error);
       });
   };
 
   return (
-    <Container>
-      <Typography variant="h3" gutterBottom>Visualizar ONGs</Typography>
-      <ONGContainer>
-        {ongs.map((ong) => (
-          <ONGCard key={ong.id}>
-            <ONGTitulo>{ong.nome}</ONGTitulo>
-            <ONGDescricao>{ong.descricao}</ONGDescricao>
-            <ONGContato>{ong.contato}</ONGContato>
-          </ONGCard>
-        ))}
-      </ONGContainer>
+    <Grid container sx={{ my: 3 }}>
+      <Grid item xs={12}>
+        <Typography variant="h3">Visualizar ONGs</Typography>
+      </Grid>
+      <Grid item xs={12}>
+        <Grid container spacing={2}>
+          {ongs.map((ong) => (
+            <Grid item key={ong.id} xs={12} sm={6} md={4}>
+              <Paper sx={{ p: 2 }}>
+                <Typography variant="h5" component="h3">{ong.nome}</Typography>
+                <Typography variant="body2">{ong.descricao}</Typography>
+                <Typography variant="body2" sx={{ fontStyle: 'italic' }}>{ong.contato}</Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
 
-      <FormContainer elevation={3}>
-        <Typography variant="h4" gutterBottom>Cadastro de Voluntário</Typography>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            label="Nome"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Telefone"
-            value={telefone}
-            onChange={(e) => setTelefone(e.target.value)}
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Mensagem"
-            value={mensagem}
-            onChange={(e) => setMensagem(e.target.value)}
-            fullWidth
-            margin="normal"
-            multiline
-            rows={4}
-          />
-          <Button variant="contained" color="primary" type="submit" style={{ marginTop: 20 }}>
-            Enviar
-          </Button>
+      <Grid item xs={12}>
+        <Typography variant="h3">Cadastro de Voluntário</Typography>
+      </Grid>
+      <Grid item xs={12}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Paper sx={{ my: 3, p: 4 }} variant="outlined">
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Nome"
+                  {...register("nome")}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Email"
+                  type="email"
+                  {...register("email")}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Telefone"
+                  {...register("telefone")}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Endereço"
+                  multiline
+                  rows={4}
+                  {...register("endereco")}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Senha"
+                  type="password"
+                  {...register("senha")}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="CPF"
+                  {...register("cpf")}
+                />
+              </Grid>
+              <Grid item>
+                <Button variant="contained" type="submit" disableElevation>
+                  Enviar
+                </Button>
+              </Grid>
+            </Grid>
+          </Paper>
         </form>
-      </FormContainer>
-    </Container>
+      </Grid>
+    </Grid>
   );
 };
+
+export default CadastroDeVoluntarios;
